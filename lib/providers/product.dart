@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:provider/provider.dart';
 
-class Product {
+class Product extends ChangeNotifier {
   final String id;
   final String title;
   final String description;
