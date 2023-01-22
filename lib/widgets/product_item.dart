@@ -1,32 +1,35 @@
 import 'package:flutter/material.dart';
 import '../screens/product_detail_screen.dart';
+import 'package:provider/provider.dart';
+import '../providers/product.dart';
 
 class ProductItem extends StatelessWidget {
   //const ProductItem({super.key});
-  final String id;
-  final title;
-  final imageUrl;
+  // final String id;
+  // final title;
+  // final imageUrl;
 
-  ProductItem(this.id, this.title, this.imageUrl);
+  // ProductItem(this.id, this.title, this.imageUrl);
 
   @override
   Widget build(BuildContext context) {
+    final product = Provider.of<Product>(context);
     return ClipRRect(
       borderRadius: BorderRadius.circular(10),
       child: GridTile(
         child: GestureDetector(
           onTap: () {
-            Navigator.of(context)
-                .pushNamed(ProductDetailsScreen.routeName, arguments: id);
+            Navigator.of(context).pushNamed(ProductDetailsScreen.routeName,
+                arguments: product.id);
           },
           child: Image.network(
-            imageUrl,
+            product.imageUrl,
             fit: BoxFit.cover,
           ),
         ),
         footer: GridTileBar(
           backgroundColor: Colors.black87,
-          title: Text(title, textAlign: TextAlign.center),
+          title: Text(product.title, textAlign: TextAlign.center),
           leading: IconButton(
             onPressed: () {},
             icon: Icon(Icons.favorite),
